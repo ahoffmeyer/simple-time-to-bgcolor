@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Your current time in colors</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+      html, body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .table { 
+        display: table; 
+        width: 100%;
+        height: 100%;
+      }
+      #time {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 500%;
+        font-weight: bold;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="table"><div id="time"></div></div>
+    
+    <script type="text/javascript">
+      "use strict"
+
+      setActualTimeToDomObject();
+
+      setInterval("setActualTimeToDomObject()", 1000);
+
+      function setActualTimeToDomObject() {
+        var _time = new Date(), // create date object
+            _timeObj = {
+              'hour':   parseTimeAlwaysToTwoDigits(_time.getHours()).toString(),
+              'minute': parseTimeAlwaysToTwoDigits(_time.getMinutes()).toString(),
+              'second': parseTimeAlwaysToTwoDigits(_time.getSeconds()).toString()
+            };
+
+        document.getElementById("time").innerHTML = _timeObj.hour +":"+ _timeObj.minute +":"+ _timeObj.second;
+        createNewBgColorDependingOnTime(_timeObj);
+      }
+
+      function createNewBgColorDependingOnTime(_timeObj) {
+        document.body.style.background = "#"+ _timeObj.hour + _timeObj.minute + _timeObj.second;
+      }
+
+      function parseTimeAlwaysToTwoDigits(timeVar) {
+        return (timeVar/10 < 1) ? 0 +""+ timeVar : timeVar;     
+      }
+
+    </script>
+  </body>
+</html>
