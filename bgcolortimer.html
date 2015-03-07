@@ -39,9 +39,9 @@
       function setActualTimeToDomObject() {
         var _time = new Date(), // create date object
             _timeObj = {
-              'hour':   parseTimeAlwaysToTwoDigits(_time.getHours()).toString(),
-              'minute': parseTimeAlwaysToTwoDigits(_time.getMinutes()).toString(),
-              'second': parseTimeAlwaysToTwoDigits(_time.getSeconds()).toString()
+              'hour':   parseTimeAlwaysToTwoDigits(_time.getHours()),
+              'minute': parseTimeAlwaysToTwoDigits(_time.getMinutes()),
+              'second': parseTimeAlwaysToTwoDigits(_time.getSeconds())
             };
 
         document.getElementById("time").innerHTML = _timeObj.hour +":"+ _timeObj.minute +":"+ _timeObj.second;
@@ -53,7 +53,7 @@
       }
 
       function parseTimeAlwaysToTwoDigits(timeVar) {
-        return (timeVar/10 < 1) ? 0 +""+ timeVar : timeVar;     
+        return (timeVar/10 < 1) ? 0 + timeVar.toString() : timeVar.toString();     
       }
 
     </script>
